@@ -1,0 +1,47 @@
+<script type="text/javascript">
+    RED.nodes.registerType('X10-control',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+	    hubip:{value:""},
+            hubport:{value:""},
+	    hubuser:{value:""},
+	    hubpass:{value:""},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"X10 Control";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="X10-control">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+        </br>
+        <label for="node-input-hubip"><i class="icon-tag"></i> Hub IP address</label>
+        <input type="text" id="node-input-hubip" placeholder="192.168.x.x">
+        </br>
+        <label for="node-input-hubport"><i class="icon-tag"></i> Hub Port</label>
+        <input type="text" id="node-input-hubport" placeholder="25105">
+        </br>
+        <label for="node-input-hubuser"><i class="icon-tag"></i> User</label>
+        <input type="text" id="node-input-hubuser" placeholder="">
+        <label for="node-input-hubpass"><i class="icon-tag"></i> Pass</label>
+        <input type="password" id="node-input-hubpass" placeholder="">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="X10-control">
+    <p>A node to send X10 Commands for a insteon hub</p>
+
+<h3><a class="node-info-header expanded" href="#"><i class="fa fa-angle-right"></i>Inputs</a></h3>
+<dl class="message-properties" style="display: block;">
+        <dt>payload <span class="property-type">object</span></dt>
+        <dd>{housecode:"A-P",unitcode:"1-16",command:"ON,OFF,DIM,BRIGHT"}</dd>
+    </dl>
+</script>
