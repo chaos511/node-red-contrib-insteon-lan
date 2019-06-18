@@ -3,7 +3,7 @@
 Nodes to control x10 modules from the insteon hub 
 you need to enter the hubs ip,port,username,password into the nodes config page
 
-i will add insteon lamplinc modules also
+i will add insteon lamplinc modules 
 
 ## Example
 
