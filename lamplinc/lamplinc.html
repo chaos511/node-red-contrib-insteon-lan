@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('X10-control',{
+    RED.nodes.registerType('Lamplinc-control',{
         category: 'insteon',
         color: '#a6bbcf',
         defaults: {
@@ -13,12 +13,12 @@
         outputs:1,
         icon: "file.png",
         label: function() {
-            return this.name||"X10 Control";
+            return this.name||"Lamplinc Control";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="X10-control">
+<script type="text/x-red" data-template-name="Lamplinc-control">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -36,12 +36,21 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="X10-control">
-    <p>A node to send X10 Commands to a insteon hub</p>
+<script type="text/x-red" data-help-name="Lamplinc-control">
+    <p>A node to send lamplinc Commands to a insteon hub</p>
+    <p>device id can be found on the device on in the app</p>
+    <p>the command onfast,offfast cannot set brightness</p>
 
 <h3><a class="node-info-header expanded" href="#"><i class="fa fa-angle-right"></i>Inputs</a></h3>
 <dl class="message-properties" style="display: block;">
         <dt>payload <span class="property-type">object</span></dt>
-        <dd>{housecode:"A-P",unitcode:"1-16",command:"ON,OFF,DIM,BRIGHT"}</dd>
+        <dd>{</dd>
+        <dd>deviceid:"2E3AE9",</dd>
+        <dd>command:"on,onfast,off,offfast",</dd>
+        <dd>brightness:"255"</dd>
+
+        <dd>}</dd>
+
+
     </dl>
 </script>

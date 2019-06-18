@@ -29,6 +29,10 @@ var httpr2 = new XMLHttpRequest()
 			node.error("housecode is null/undefined")
 			return
 		}
+		if(msg.payload.command==null){
+			node.error("command is null/undefined")
+			return
+		}
 		if(msg.payload.housecode.length!=1){
 			node.error("housecode length != 1")
 			return
