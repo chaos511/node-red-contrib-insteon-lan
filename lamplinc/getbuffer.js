@@ -1,20 +1,16 @@
 module.exports = function(RED) {
     function getbufferNode(config) {
-    RED.nodes.createNode(this,config);
+    	RED.nodes.createNode(this,config);
 	var port=config.hubport
 	var ip=config.hubip
 	var user=config.hubuser
 	var pass=config.hubpass
-
-
-
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-var btoa = require('btoa'); 
-var httpr = new XMLHttpRequest()
-
-
+	var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
         var node = this;
+
         node.on('input', function(msg) {
+		var btoa = require('btoa'); 
+		var httpr = new XMLHttpRequest()
 
 		url="http:\/\/"+user+":"+pass+"@"+ip+":"+port+"/buffstatus.xml"
 
