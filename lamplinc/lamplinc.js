@@ -49,14 +49,14 @@ var httpr = new XMLHttpRequest()
 			case "OFF":
 				commandval="13"
 			break;
-			case "onfast":
+			case "ONFAST":
 				commandval="12"
 			break;
-			case "offfast":
+			case "OFFFAST":
 				commandval="14"
 			break;
 			default:
-				node.error("command not ON,OFF,onfase,offfast")
+				node.error("command not ON,OFF,onfast,offfast")
 				break
 			break;
 		}
@@ -92,6 +92,7 @@ var httpr = new XMLHttpRequest()
     				node.status({fill:"red", shape:"ring", text:"Error connecting to hub"});
 				done=-1
 				node.send({payload:"timeout"})
+				httpr.abort()
 			}
 		}, 3000);
 
