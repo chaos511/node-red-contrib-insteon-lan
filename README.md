@@ -4,9 +4,9 @@ Nodes to control x10 and lamplinc modules with the insteon hub
 you need to enter the hubs ip,port,username,password into the nodes config page
 
 # Nodes
-x10 control      :Send commands to x10 modules thru hub
-lampling control :Send commands to lamplinc modules thru hub
-get buffer       :Read the buffer of the hub (can be used for detecting button presses on the miniremote)
+x10 control      :Send commands to x10 modules thru hub <br/>
+lampling control :Send commands to lamplinc modules thru hub<br/>
+get buffer       :Read the buffer of the hub (can be used for detecting button presses on the miniremote)<br/>
 
 ## x10 Example
 
