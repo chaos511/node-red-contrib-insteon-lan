@@ -57,8 +57,11 @@ var httpr = new XMLHttpRequest()
 			case "OFFFAST":
 				commandval="14"
 			break;
+			case "BEEP":
+				commandval="30";
+			break;
 			default:
-				node.error("command not ON,OFF,onfast,offfast")
+				node.error("command not ON,OFF,onfast,offfast,BEEP")
 				break
 			break;
 		}
