@@ -5,8 +5,6 @@ module.exports = function(RED) {
 	var ip=config.hubip
 	var user=config.hubuser
 	var pass=config.hubpass
-//        const Httprequest1 = new XMLHttpRequest();
-// 	const Httprequest2 = new XMLHttpRequest();
 
 
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
@@ -18,8 +16,6 @@ var httpr2 = new XMLHttpRequest()
         var node = this;
         node.on('input', function(msg) {
 		node.status({fill:"red",shape:"ring",text:"Input error"})
-//		var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-//		var xhttp = new XMLHttpRequest();
 
 		if(msg.payload.unitcode==null){
 			node.error("unitcode is null/undefined")
@@ -63,8 +59,14 @@ var httpr2 = new XMLHttpRequest()
 			case "BRIGHT":
 				commandval="580"
 			break;
+			case "ALL ON":
+				commandval="180"
+			break;
+			case "ALL OFF":
+				commandval="680"
+			break;
 			default:
-				node.error("command not ON,OFF,DIM,BRIGHT")
+				node.error("command not ON,OFF,DIM,BRIGHT,ALL ON,ALL OFF")
 				break
 			break;
 		}
@@ -120,18 +122,9 @@ var httpr2 = new XMLHttpRequest()
 				done=-1
 				node.send({payload:"timeout"})
 			}
-//			node.warn("timeout")
 		}, 3000);
 
 
-//		while(!done){}
-//		msg.url=url1
-//		node.send(msg)
-//		node.warn("done")
-//		msg.url=url2
-		//msg.url2=url2
-//                node.send(msg);
-        });
     }
 
     RED.nodes.registerType("X10-control",X10controlNode);

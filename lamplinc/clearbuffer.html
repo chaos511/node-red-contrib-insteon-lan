@@ -1,5 +1,6 @@
+
 <script type="text/javascript">
-    RED.nodes.registerType('X10-control',{
+    RED.nodes.registerType('Clear-buffer',{
         category: 'insteon',
         color: '#a6bbcf',
         defaults: {
@@ -13,12 +14,12 @@
         outputs:1,
         icon: "file.png",
         label: function() {
-            return this.name||"X10 Control";
+            return this.name||"Clear Buffer";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="X10-control">
+<script type="text/x-red" data-template-name="Clear-buffer">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -36,12 +37,8 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="X10-control">
-    <p>A node to send X10 Commands to a insteon hub</p>
-
-<h3><a class="node-info-header expanded" href="#"><i class="fa fa-angle-right"></i>Inputs</a></h3>
-<dl class="message-properties" style="display: block;">
-        <dt>payload <span class="property-type">object</span></dt>
-        <dd>{housecode:"A-P",unitcode:"1-16",command:"ON,OFF,DIM,BRIGHT,ALL ON,ALL OFF"}</dd>
-    </dl>
+<script type="text/x-red" data-help-name="Clear-buffer">
+    <p>A node that will clear the buffer in the insteon hub</p>
+    <p>this node has no inputs</p>
+    <p>msg.payload will return the buffer</p>
 </script>

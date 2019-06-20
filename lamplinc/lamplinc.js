@@ -41,7 +41,9 @@ var httpr = new XMLHttpRequest()
 			return
 		}
 		var brightnessval=brightnessnum.toString(16).toUpperCase()
-
+		if(brightnessval.length==1){
+			brightnessval="0"+brightnessval
+		}
 		switch(msg.payload.command.toUpperCase()){
 			case "ON":
 				commandval="11"
