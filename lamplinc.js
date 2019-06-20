@@ -41,7 +41,9 @@ var httpr = new XMLHttpRequest()
 			return
 		}
 		var brightnessval=brightnessnum.toString(16).toUpperCase()
-
+		if(brightnessval.length==1){
+			brightnessval="0"+brightnessval
+		}
 		switch(msg.payload.command.toUpperCase()){
 			case "ON":
 				commandval="11"
@@ -55,8 +57,11 @@ var httpr = new XMLHttpRequest()
 			case "OFFFAST":
 				commandval="14"
 			break;
+			case "BEEP":
+				commandva="30";
+			break;
 			default:
-				node.error("command not ON,OFF,onfast,offfast")
+				node.error("command not ON,OFF,onfast,offfast,BEEP")
 				break
 			break;
 		}
@@ -92,6 +97,7 @@ var httpr = new XMLHttpRequest()
     				node.status({fill:"red", shape:"ring", text:"Error connecting to hub"});
 				done=-1
 				node.send({payload:"timeout"})
+				httpr.abort()
 			}
 		}, 3000);
 
