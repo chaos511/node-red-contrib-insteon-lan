@@ -25,3 +25,6 @@ readmo remove hub config from all examples
 
 1.3.5
 remove ip from miniremote example
+
+1.4.0
+readme add x10 recieve example
