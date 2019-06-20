@@ -5,3 +5,8 @@ remove comented out lines
 x10.js reinitialize on input was on deploy
 lamplinc.js reinitialize on input was on deplo
 x10.js add commands "all on" and "all off" (not tested)
+
+
+1.3.1
+fix x10.js 
+add clearbuffer to package.json

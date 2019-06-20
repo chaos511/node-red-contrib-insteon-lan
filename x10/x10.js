@@ -124,7 +124,7 @@ var httpr2 = new XMLHttpRequest()
 			}
 		}, 3000);
 
-
+        });
     }
 
     RED.nodes.registerType("X10-control",X10controlNode);
