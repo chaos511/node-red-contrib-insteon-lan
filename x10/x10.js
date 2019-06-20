@@ -1,20 +1,25 @@
 module.exports = function(RED) {
     function X10controlNode(config) {
         RED.nodes.createNode(this,config);
-	var port=config.hubport
-	var ip=config.hubip
-	var user=config.hubuser
-	var pass=config.hubpass
 
+	config.hub = RED.nodes.getNode(config.hub);
 
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-var btoa = require('btoa'); 
-var httpr = new XMLHttpRequest()
-var httpr2 = new XMLHttpRequest()
+	if(config.hub){
+		var port=config.hub.port
+		var ip=config.hub.ip
+		var user=config.hub.username
+		var pass=config.hub.password
+	}
+
+	var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+	var btoa = require('btoa'); 
 
 	var housecodelookup=['6','E','2','A','1','9','5','D','7','F','3','B','0','8','4','C']
         var node = this;
         node.on('input', function(msg) {
+		var httpr = new XMLHttpRequest()
+		var httpr2 = new XMLHttpRequest()
+
 		node.status({fill:"red",shape:"ring",text:"Input error"})
 
 		if(msg.payload.unitcode==null){
@@ -120,7 +125,7 @@ var httpr2 = new XMLHttpRequest()
 			if(done==0||done==1){
     				node.status({fill:"red", shape:"ring", text:"Error connecting to hub"});
 				done=-1
-				node.send({payload:"timeout"})
+				node.send({payload:"timeout",debug:msg.debug})
 			}
 		}, 3000);
 

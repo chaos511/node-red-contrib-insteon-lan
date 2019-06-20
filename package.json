@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-insteon-lan",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "control insteon hub over lan",
   "main": "index.js",
   "scripts": {
@@ -24,10 +24,13 @@
   "homepage": "https://github.com/chaos511/node-red-contrib-insteon-lan#readme",
   "node-red": {
     "nodes": {
-      "x10": "x10/x10.js",
-      "lamplinc": "lamplinc/lamplinc.js",
-      "getbuffer": "lamplinc/getbuffer.js",
-      "clearbuffer":"lamplinc/clearbuffer.js"
+      "hubconfig"	:"hubconfig.js",
+      "x10"		:"x10/x10.js",
+      "x10receive"	:"x10/x10receive.js",
+      "lamplinc"	:"lamplinc/lamplinc.js",
+      "getbuffer"	:"lamplinc/getbuffer.js",
+      "clearbuffer"	:"lamplinc/clearbuffer.js",
+      "miniremotereceive":"lamplinc/miniremotereceive.js"
     }
   },
   "dependencies": {

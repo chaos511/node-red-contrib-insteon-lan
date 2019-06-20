@@ -1,22 +1,22 @@
 
 <script type="text/javascript">
-    RED.nodes.registerType('Clear-buffer',{
+    RED.nodes.registerType('X10-receive',{
         category: 'insteon',
         color: '#a6bbcf',
         defaults: {
             name: {value:""},
 	    hub:  {value:"",type:"hub-config"},
         },
-        inputs:1,
+        inputs:0,
         outputs:1,
         icon: "file.png",
         label: function() {
-            return this.name||"Clear Buffer";
+            return this.name||"X10 receive";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="Clear-buffer">
+<script type="text/x-red" data-template-name="X10-receive">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -26,8 +26,7 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="Clear-buffer">
-    <p>A node that will clear the buffer in the insteon hub</p>
-    <p>this node has no inputs</p>
-    <p>msg.payload will return the buffer</p>
+<script type="text/x-red" data-help-name="X10-receive">
+    <p>A node that will read the buffer of the insteon hub and decode x10 commands</p>
+   
 </script>

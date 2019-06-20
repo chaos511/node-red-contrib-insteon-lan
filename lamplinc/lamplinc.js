@@ -1,20 +1,25 @@
 module.exports = function(RED) {
-    function lamplinccontrolNode(config) {
-    RED.nodes.createNode(this,config);
-	var port=config.hubport
-	var ip=config.hubip
-	var user=config.hubuser
-	var pass=config.hubpass
+   function lamplinccontrolNode(config) {
+    	RED.nodes.createNode(this,config);
+
+	config.hub = RED.nodes.getNode(config.hub);
+
+        if(config.hub){
+                var port=config.hub.port
+                var ip=config.hub.ip
+                var user=config.hub.username
+                var pass=config.hub.password
+        }
 
 
-
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-var btoa = require('btoa'); 
-var httpr = new XMLHttpRequest()
+	var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+	var btoa = require('btoa'); 
 
 
         var node = this;
         node.on('input', function(msg) {
+		var httpr = new XMLHttpRequest()
+
 		node.status({fill:"red",shape:"ring",text:"Input error"})
 
 		if(msg.payload.deviceid==null){

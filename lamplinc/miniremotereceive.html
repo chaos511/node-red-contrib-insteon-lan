@@ -1,33 +1,35 @@
 
 <script type="text/javascript">
-    RED.nodes.registerType('Clear-buffer',{
+    RED.nodes.registerType('Mini-remote-receive',{
         category: 'insteon',
         color: '#a6bbcf',
         defaults: {
             name: {value:""},
+	    remoteid:{value:"",required:true},
 	    hub:  {value:"",type:"hub-config"},
         },
-        inputs:1,
+        inputs:0,
         outputs:1,
         icon: "file.png",
         label: function() {
-            return this.name||"Clear Buffer";
+            return this.name||"Mini Remote Receive";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="Clear-buffer">
+<script type="text/x-red" data-template-name="Mini-remote-receive">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
         <br/>
         <label for="node-input-hub"><i class="icon-tag"></i> Hub</label>
         <input type="text" id="node-input-hub">
+        <label for="node-input-remoteid"><i class="icon-tag"></i> Remote ID</label>
+        <input type="text" id="node-input-remoteid" placeholder="1E32F5" >
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="Clear-buffer">
-    <p>A node that will clear the buffer in the insteon hub</p>
-    <p>this node has no inputs</p>
-    <p>msg.payload will return the buffer</p>
+<script type="text/x-red" data-help-name="Mini-remote-receive">
+    <p>A node that will read the buffer of the insteon hub and decode mini remote commands</p>
+   
 </script>

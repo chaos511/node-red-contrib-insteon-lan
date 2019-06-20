@@ -4,10 +4,7 @@
         color: '#a6bbcf',
         defaults: {
             name: {value:""},
-	    hubip:{value:""},
-            hubport:{value:""},
-	    hubuser:{value:""},
-	    hubpass:{value:""},
+	    hub:  {value:"",type:"hub-config"},
         },
         inputs:1,
         outputs:1,
@@ -22,17 +19,9 @@
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-        </br>
-        <label for="node-input-hubip"><i class="icon-tag"></i> Hub IP address</label>
-        <input type="text" id="node-input-hubip" placeholder="192.168.x.x">
-        </br>
-        <label for="node-input-hubport"><i class="icon-tag"></i> Hub Port</label>
-        <input type="text" id="node-input-hubport" placeholder="25105">
-        </br>
-        <label for="node-input-hubuser"><i class="icon-tag"></i> User</label>
-        <input type="text" id="node-input-hubuser" placeholder="">
-        <label for="node-input-hubpass"><i class="icon-tag"></i> Pass</label>
-        <input type="password" id="node-input-hubpass" placeholder="">
+        <br/>
+        <label for="node-input-hub"><i class="icon-tag"></i> Hub</label>
+        <input type="text" id="node-input-hub">
     </div>
 </script>
 
