@@ -5,28 +5,25 @@ you need to enter the hubs ip,port,username,password into the nodes config page
 
 # Nodes
 <br/>
-## X10 Control
-
+## x10 control<br/>	
 --Send commands to x10 modules thru hub <br/>
-
-
-## X10 Receive
-
+<br/>
+<br/>
+## x10 receive<br/>
 --Receive x10 commands from x10 remotes<br/>
-
-## Mini Remote Receive	
-
+<br/>
+<br/>
+## mini remote receive<br/>	
 --lampling control -Send commands to lamplinc modules thru hub<br/>
-
-
-## Get Buffer
-
+<br/>
+<br/>
+## get buffer<br/>
 --Read current buffer from the hub <br/>
-
-
-## Clear Buffer
-
+<br/>
+<br/>
+## clear buffer<br/>
 --clears the buffer <br/>
+
 
 ## x10 send Example
 

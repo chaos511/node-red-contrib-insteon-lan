@@ -36,3 +36,7 @@ add miniremote receive node
 add x10 receive node
 readme update examples
 
+1.5.1
+x10 and miniremote receive change timeout time
+x10 and miniremote receive fix sending "timeout" when it dod not timeout
+x10 and miniremote receivi fix sending multiple parallel requests to the hub

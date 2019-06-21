@@ -16,31 +16,34 @@ module.exports = function(RED) {
 	var httpr = new XMLHttpRequest()
 	var clearhttpr = new XMLHttpRequest()
 	url="http:\/\/"+user+":"+pass+"@"+ip+":"+port+"/buffstatus.xml"
-	var done=0
+	var timeoutvalid=0
+	function onchange(){
+		if(this.status==200){
+			timeoutvalid=0
+			node.status({fill:"green",shape:"ring",text:"complete"})
+//			node.send({payload:"got buffer"})
+			clearTimeout(timeoutval)
+			resetclearhttpr()
+			decode(httpr.responseText.replace("<response><BS>","" ).replace("</BS></response>",""))
+			httpr.abort()
+			resethttpr()
+			setTimeout(getbuffer,500)
+		}
+		if(this.status==401){
+			timeoutvalid=0
+			node.send({payload:"Unauthorized"})
+			node.status({fill:"red",shape:"ring",text:"Error Unauthorized "})
+			clearTimeout(timeoutval)
+			httpr.abort()
+			}
+	}
 	function resethttpr(){
 		httpr = new XMLHttpRequest()
-		httpr.onreadystatechange = function(){
-			if(this.status==200){
-				if(done==0){
-					done=1
-					decode(httpr.responseText.replace("<response><BS>","" ).replace("</BS></response>",""))
-					node.status({fill:"green",shape:"ring",text:"complete"})
-					httpr.abort()
-				}
-				clearTimeout(timeoutval)
-			}
-			if(this.status==401){
-				done=401
-				node.send({payload:"Unauthorized"})
-				node.status({fill:"red",shape:"ring",text:"Error Unauthorized "})
-				clearTimeout(timeoutval)
-			}
-		}
+		httpr.onreadystatechange =onchange
 	}
 	resethttpr()
-
-
 	function resetclearhttpr(){
+		clearhttpr= null
 		clearhttpr = new XMLHttpRequest()
 		clearhttpr.onreadystatechange = function(){
 			if(this.status==200){
@@ -54,45 +57,35 @@ module.exports = function(RED) {
 			}
 		}
 	}
-
-
-
-
-	function getbuffer(){ 
-		done=0
+	function getbuffer(){
+//		node.send({payload:"request buffer"})
+		timeoutvalid=1
+		timeoutval=setTimeout(timeout,4000)
 		httpr.open("GET",url)
 		httpr.setRequestHeader("Authorization", "Basic " + btoa(user+":"+pass))
 		httpr.send()
-		timeoutval=setTimeout(timeout,3000)
 	}
-
-
 	function clearbuffer(){
 		clearhttpr.open("GET","http:\/\/"+user+":"+pass+"@"+ip+":"+port+"/1?XB=M=1")
 		clearhttpr.setRequestHeader("Authorization", "Basic " + btoa(user+":"+pass))
 		clearhttpr.send()
-		cleartimeoutval=setTimeout(clearbuffertimeout,3000)
+		cleartimeoutval=setTimeout(clearbuffertimeout,4000)
 	}
-
-
 	function timeout(){
-		node.send({payload:"timeout"})
-		node.status({fill:"red",shape:"ring",text:"Error connecting to hub"})
-		resethttpr()
-		setTimeout(getbuffer,1000)
+		if(timeoutvalid==1){
+			node.send({payload:"timeout"})
+			node.status({fill:"red",shape:"ring",text:"Error connecting to hub"})
+			resethttpr()
+			setTimeout(getbuffer,1500)
+		}
 	}
-
 	function clearbuffertimeout(){
 		node.send({payload:"clear timeout"})
 		node.status({fill:"red",shape:"ring",text:"Error connecting to hub"})
 		resetclearhttpr()
-		setTimeout(clearbuffer,1000)
+		setTimeout(clearbuffer,1500)
 	}
-
-
 	function decode(buffer){
-		resethttpr()
-		resetclearhttpr()
 		var messagelength=8
 		var start=0;
 		var loop=true
@@ -126,7 +119,6 @@ module.exports = function(RED) {
 					node.send({payload:newmsg})
 					clearbuffer()
 				}
-				setTimeout(getbuffer,500)
 			}
 		}
 		function commandlookup(cmd){
@@ -153,9 +145,7 @@ module.exports = function(RED) {
 			}
 			return out
 		}
-
 	}
-
 	getbuffer()
     }
     RED.nodes.registerType("X10-receive",x10receiveNode);
